@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📚 Student Notes App</h1>
+        <p>Write and organize your study notes.</p>
+
+        <input type="text" id="noteTitle" placeholder="Enter note title">
+
+        <textarea id="noteContent" placeholder="Write your note here..."></textarea>
+
+        <button onclick="addNote()">Add Note</button>
+
+        <h2>My Notes</h2>
+
+        <div id="notesList"></div>
+
+    </div>
+
+    <script>
+        function addNote() {
+
+            let title = document.getElementById("noteTitle").value;
+            let content = document.getElementById("noteContent").value;
+
+            if (title === "" || content === "") {
+                alert("Please enter both title and note");
+                return;
+            }
+
+            let note = document.createElement("div");
+            note.className = "note";
+
+            note.innerHTML = `
+                <h3>${title}</h3>
+                <p>${content}</p>
+                <button onclick="this.parentElement.remove()">Delete</button>
+            `;
+
+            document.getElementById("notesList").appendChild(note);
+
+            document.getElementById("noteTitle").value = "";
+            document.getElementById("noteContent").value = "";
+        }
+    </script>
+
+</body>
+</html>
